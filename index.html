@@ -1,99 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>hxhhh Wallah / Laundry Mart</title>
+  <meta charset="UTF-8">
+  <title>Laundry Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
+
+    body {
+      overflow: hidden;
+      background-color: #ffffff;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      height: 10vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6vw;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #6b7280;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .nav-links li a:hover {
+      color: #0ea5e9;
+    }
+
+    .username {
+      background: #e0f2fe;
+      color: #0284c7;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: 0 6vw;
+    }
+
+    .hero-left {
+      flex: 1;
+    }
+
+    .hero-left h1 {
+      font-size: 40px;
+      font-weight: 600;
+      color: #374151;
+      line-height: 1.3;
+    }
+
+    .hero-left h1 span {
+      color: #0ea5e9;
+      font-weight: 700;
+    }
+
+    .hero-left p {
+      margin-top: 18px;
+      font-size: 14px;
+      color: #6b7280;
+      max-width: 520px;
+      line-height: 1.6;
+    }
+
+    .hero-btn {
+      margin-top: 28px;
+      padding: 14px 26px;
+      background: #0ea5e9;
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .hero-btn:hover {
+      background: #0284c7;
+    }
+
+    .hero-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-right img {
+      width: 75%;
+      max-height: 70vh;
+      object-fit: contain;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-left h1 {
+        font-size: 28px;
+      }
+
+      .hero-right img {
+        margin-top: 30px;
+        width: 85%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header>
-        <h1>Welcome to Laundry Wallah / Laundry Mart</h1>
-        <hr>
-    </header>
-    <!-- About Section -->
-    <section>
-        <h2>About Us</h2>
-        <p>
-            Laundry Wallah / Laundry Mart is your trusted neighborhood laundry partner, 
-            dedicated to making your daily life easier and more convenient. 
-            We provide professional washing, drying, ironing, and dry-cleaning services 
-            with a strong focus on hygiene and fabric care. 
-            Our team uses quality detergents and modern machines to ensure your clothes look fresh and last longer. 
-            Whether it’s everyday wear, office formals, or delicate garments, we handle each item with care. 
-            With quick turnaround time and reliable service, Laundry Wallah / Laundry Mart is here to keep your wardrobe spotless.
-        </p>
-    </section>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">Logo</div>
 
-    <!-- Image Section -->
-    <section>
-        <h2>Our Laundry Facility</h2>
-        <img src="https://media3.bsh-group.com/Product_Shots/5120x/21433238_WG34A20PIN_PGA4_def.webp" alt="Laundry Image" width="400" height="250">
-    </section>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
 
-    <!-- Services Section -->
-    <section>
-        <h2>Our Services</h2>
-        <ul>
-            <li>Washing and Drying</li>
-            <li>Ironing and Folding</li>
-            <li>Dry Cleaning</li>
-            <li>Stain Removal</li>
-            <li>Express Same-Day Services</li>
-            <li>Special Garment Care (Suits, Sarees, Lehengas)</li>
-            <li>Blanket and Curtain Cleaning</li>
-        </ul>
-    </section>
+    <div class="username">Username</div>
+  </nav>
 
-    <!-- Price List Section -->
-    <section>
-        <h2>Price List</h2>
-        <table border="1" cellpadding="8" cellspacing="0">
-            <tr>
-                <th>Service</th>
-                <th>Price (per item)</th>
-            </tr>
-            <tr>
-                <td>Washing and Drying</td>
-                <td>Rs 10.00</td>
-            </tr>
-            <tr>
-                <td>Ironing and Folding</td>
-                <td>Rs 5.00</td>
-            </tr>
-            <tr>
-                <td>Dry Cleaning</td>
-                <td>Rs 25.00</td>
-            </tr>
-            <tr>
-                <td>Express Service (Same Day)</td>
-                <td>Rs 15.00</td>
-            </tr>
-        </table>
-    </section>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-left">
+      <h1>
+        Revitalize Your<br>
+        Clothes with Expert<br>
+        <span>Laundry Services!</span>
+      </h1>
 
-    <!-- Book Now Section -->
-    <section>
-        <h2>Book Now</h2>
-        <form>
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name" required><br><br>
+      <p>
+        From premium dry cleaning to swift wash and fold, we deliver care and
+        convenience. Schedule a pickup and rediscover the freshness of your
+        clothes today!
+      </p>
 
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required><br><br>
+      <button class="hero-btn">Book a service today!</button>
+    </div>
 
-            <label for="phone">Phone:</label><br>
-            <input type="tel" id="phone" name="phone" required><br><br>
-
-            <button type="submit">Submit</button>
-        </form>
-    </section>
-
-    <!-- Footer Section -->
-    <footer>
-        <hr>
-        <p>Contact us at: info@laundrymart.com</p>
-    </footer>
+    <div class="hero-right">
+      <img src="https://media3.bsh-group.com/Product_Shots/5120x/21433238_WG34A20PIN_PGA4_def.webp"
+           alt="Laundry Service">
+    </div>
+  </section>
 
 </body>
 </html>
