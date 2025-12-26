@@ -7,6 +7,12 @@
 
 <!-- EmailJS -->
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+(function(){
+  emailjs.init("e1rDXqlbRV2TFm0kV"); // Public Key ✅
+})();
+</script>
+
 
 <style>
 *{
@@ -361,72 +367,53 @@ nav a{
 </footer>
 
 <script>
-/* ========== EMAILJS INIT ========== */
-emailjs.init("e1rDXqlbRV2TFm0kV");
-
-let total = 0;
-
-function scrollToBooking(){
-  document
-    .getElementById("booking-section")
-    .scrollIntoView({ behavior: "smooth" });
-}
-
-function addItem(name, price){
-  const li = document.createElement("li");
-  li.textContent = `${name} - ₹${price}`;
-  document.getElementById("cartItems").appendChild(li);
-
-  total += price;
-  document.getElementById("total").innerText = total;
-}
-
-function removeItem(price){
-  const list = document.getElementById("cartItems");
-
-  if(list.children.length === 0){
-    alert("No items to remove.");
-    return;
-  }
-
-  list.removeChild(list.lastChild);
-  total -= price;
-
-  if(total < 0) total = 0;
-  document.getElementById("total").innerText = total;
-}
-
 function sendEmail(){
+
   const name  = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
   const phone = document.getElementById("phone").value.trim();
 
-  if(total === 0){
+  if (total === 0) {
     alert("Please add at least one service.");
     return;
   }
 
-  if(!name || !email || !phone){
+  if (!name || !email || !phone) {
     alert("Please fill all booking details.");
     return;
   }
 
-  emailjs
-    .send("service_25k3exr", "template_a7vitxg", {
+  const message = `
+Laundry Booking Request
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Total Amount: ₹${total}
+`;
+
+  emailjs.send(
+    "service_25k3exr",
+    "template_a7vitxg",
+    {
+      title: "Laundry Booking",
       name: name,
       email: email,
-      phone: phone,
-      total: total
-    })
-    .then(() => {
-      document.getElementById("success").style.display = "block";
-    })
-    .catch((err) => {
-      alert("Email failed. Check console.");
-      console.error(err);
-    });
+      message: message,
+      time: new Date().toLocaleString()
+    }
+  )
+  .then(function(response){
+    console.log("SUCCESS!", response.status, response.text);
+    document.getElementById("success").style.display = "block";
+  })
+  .catch(function(error){
+    console.error("FAILED...", error);
+    alert("Email failed. Check console.");
+  });
 }
 </script>
+
 
 
 </body>
