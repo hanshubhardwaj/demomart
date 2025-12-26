@@ -367,18 +367,54 @@ nav a{
 </footer>
 
 <script>
+/* ================= GLOBAL ================= */
+let total = 0;
+
+/* ================= SCROLL ================= */
+function scrollToBooking(){
+  document
+    .getElementById("booking-section")
+    .scrollIntoView({ behavior: "smooth" });
+}
+
+/* ================= CART ================= */
+function addItem(name, price){
+  const li = document.createElement("li");
+  li.textContent = `${name} - ₹${price}`;
+  document.getElementById("cartItems").appendChild(li);
+
+  total += price;
+  document.getElementById("total").innerText = total;
+}
+
+function removeItem(price){
+  const list = document.getElementById("cartItems");
+
+  if(list.children.length === 0){
+    alert("No items to remove.");
+    return;
+  }
+
+  list.removeChild(list.lastChild);
+  total -= price;
+
+  if(total < 0) total = 0;
+  document.getElementById("total").innerText = total;
+}
+
+/* ================= EMAIL ================= */
 function sendEmail(){
 
   const name  = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
   const phone = document.getElementById("phone").value.trim();
 
-  if (total === 0) {
+  if(total === 0){
     alert("Please add at least one service.");
     return;
   }
 
-  if (!name || !email || !phone) {
+  if(!name || !email || !phone){
     alert("Please fill all booking details.");
     return;
   }
@@ -403,16 +439,16 @@ Total Amount: ₹${total}
       time: new Date().toLocaleString()
     }
   )
-  .then(function(response){
-    console.log("SUCCESS!", response.status, response.text);
+  .then(() => {
     document.getElementById("success").style.display = "block";
   })
-  .catch(function(error){
-    console.error("FAILED...", error);
+  .catch((error) => {
+    console.error(error);
     alert("Email failed. Check console.");
   });
 }
 </script>
+
 
 
 
