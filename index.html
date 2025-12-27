@@ -2,15 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Laundry Services</title>
+<title>Laundry Services By Hanshu Bhardwaj</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-(function(){
-  emailjs.init("e1rDXqlbRV2TFm0kV"); // Public Key ✅
-})();
+<!-- EmailJS --> 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript"> (function(){ emailjs.init({ publicKey: "e1rDXqIbRV2TFm0kV", }); })(); 
 </script>
 
 
@@ -367,18 +365,25 @@ nav a{
 </footer>
 
 <script>
+/* ================= EMAILJS INIT ================= */
+(function () {
+  emailjs.init({
+    publicKey: "e1rDXqIbRV2TFm0kV" // ✅ YOUR PUBLIC KEY
+  });
+})();
+
 /* ================= GLOBAL ================= */
 let total = 0;
 
 /* ================= SCROLL ================= */
-function scrollToBooking(){
+function scrollToBooking() {
   document
     .getElementById("booking-section")
     .scrollIntoView({ behavior: "smooth" });
 }
 
-/* ================= CART ================= */
-function addItem(name, price){
+/* ================= CART FUNCTIONS ================= */
+function addItem(name, price) {
   const li = document.createElement("li");
   li.textContent = `${name} - ₹${price}`;
   document.getElementById("cartItems").appendChild(li);
@@ -387,10 +392,10 @@ function addItem(name, price){
   document.getElementById("total").innerText = total;
 }
 
-function removeItem(price){
+function removeItem(price) {
   const list = document.getElementById("cartItems");
 
-  if(list.children.length === 0){
+  if (list.children.length === 0) {
     alert("No items to remove.");
     return;
   }
@@ -398,59 +403,60 @@ function removeItem(price){
   list.removeChild(list.lastChild);
   total -= price;
 
-  if(total < 0) total = 0;
+  if (total < 0) total = 0;
   document.getElementById("total").innerText = total;
 }
 
-/* ================= EMAIL ================= */
-function sendEmail(){
+/* ================= SEND EMAIL ================= */
+function sendEmail() {
 
   const name  = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
   const phone = document.getElementById("phone").value.trim();
 
-  if(total === 0){
-    alert("Please add at least one service.");
-    return;
-  }
-
-  if(!name || !email || !phone){
+  if (!name || !email || !phone) {
     alert("Please fill all booking details.");
     return;
   }
 
-  const message = `
-Laundry Booking Request
+  if (total === 0) {
+    alert("Please add at least one service.");
+    return;
+  }
 
-Name: ${name}
-Email: ${email}
-Phone: ${phone}
-Total Amount: ₹${total}
-`;
+  /* ===== TEMPLATE PARAMS ===== */
+  const templateParams = {
+    title: "Laundry Booking Request",
+    name: name,
+    email: email,
+    phone: phone,
+    total: `₹${total}`,
+    message: "A new laundry service booking has been placed.",
+    time: new Date().toLocaleString()
+  };
 
-  emailjs.send(
-    "service_25k3exr",
-    "template_a7vitxg",
-    {
-      title: "Laundry Booking",
-      name: name,
-      email: email,
-      message: message,
-      time: new Date().toLocaleString()
-    }
-  )
-  .then(() => {
-    document.getElementById("success").style.display = "block";
-  })
-  .catch((error) => {
-    console.error(error);
-    alert("Email failed. Check console.");
-  });
+  emailjs
+    .send(
+      "service_25k3exr",    // ✅ SERVICE ID
+      "template_a7vitxg",   // ✅ TEMPLATE ID
+      templateParams
+    )
+    .then(() => {
+      document.getElementById("success").style.display = "block";
+
+      // Reset form & cart
+      document.getElementById("name").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("phone").value = "";
+      document.getElementById("cartItems").innerHTML = "";
+      document.getElementById("total").innerText = "0";
+      total = 0;
+    })
+    .catch((error) => {
+      console.error("EmailJS Error:", error);
+      alert("Failed to send booking. Please try again.");
+    });
 }
 </script>
-
-
-
-
 </body>
 </html>
