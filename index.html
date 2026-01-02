@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Laundry Services By Hanshu Bhardwaj</title>
+<title>Laundry Services By Bhardwaj</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- EmailJS -->
@@ -345,66 +345,63 @@ nav a{
       <h3>Our Services</h3>
 
       <div class="services-grid">
-        <div class="service-card">
-          <h4>Dry Cleaning</h4>
-          <p>Premium fabric care</p>
-          <span>₹200</span>
-          <div class="service-actions">
-            <button class="add" onclick="addItem('Dry Cleaning',200)">+</button>
-            <button class="remove" onclick="removeItem(200)">−</button>
-          </div>
-        </div>
 
-        <div class="service-card">
-          <h4>Washing</h4>
-          <p>Machine wash</p>
-          <span>₹100</span>
-          <div class="service-actions">
-            <button class="add" onclick="addItem('Washing',100)">+</button>
-            <button class="remove" onclick="removeItem(100)">−</button>
-          </div>
-        </div>
+  <div class="service-card">
+    <h4>Dry Cleaning</h4>
+    <p>Premium fabric care</p>
+    <span>₹200</span>
+    <div class="service-actions">
+      <button class="add" onclick="toggleItem(this,'Dry Cleaning',200)">Add</button>
+    </div>
+  </div>
 
-        <div class="service-card">
-          <h4>Ironing</h4>
-          <p>Steam press</p>
-          <span>₹50</span>
-          <div class="service-actions">
-            <button class="add" onclick="addItem('Ironing',50)">+</button>
-            <button class="remove" onclick="removeItem(50)">−</button>
-          </div>
-        </div>
+  <div class="service-card">
+    <h4>Washing</h4>
+    <p>Machine wash</p>
+    <span>₹100</span>
+    <div class="service-actions">
+      <button class="add" onclick="toggleItem(this,'Washing',100)">Add</button>
+    </div>
+  </div>
 
-        <div class="service-card">
-          <h4>Wash & Iron</h4>
-          <p>Complete combo</p>
-          <span>₹140</span>
-          <div class="service-actions">
-            <button class="add" onclick="addItem('Wash & Iron',140)">+</button>
-            <button class="remove" onclick="removeItem(140)">−</button>
-          </div>
-        </div>
+  <div class="service-card">
+    <h4>Ironing</h4>
+    <p>Steam press</p>
+    <span>₹50</span>
+    <div class="service-actions">
+      <button class="add" onclick="toggleItem(this,'Ironing',50)">Add</button>
+    </div>
+  </div>
 
-        <div class="service-card">
-          <h4>Blanket Cleaning</h4>
-          <p>Deep clean</p>
-          <span>₹300</span>
-          <div class="service-actions">
-            <button class="add" onclick="addItem('Blanket Cleaning',300)">+</button>
-            <button class="remove" onclick="removeItem(300)">−</button>
-          </div>
-        </div>
+  <div class="service-card">
+    <h4>Wash & Iron</h4>
+    <p>Complete combo</p>
+    <span>₹140</span>
+    <div class="service-actions">
+      <button class="add" onclick="toggleItem(this,'Wash & Iron',140)">Add</button>
+    </div>
+  </div>
 
-        <div class="service-card">
-          <h4>Shoe Cleaning</h4>
-          <p>Inside & outside</p>
-          <span>₹250</span>
-          <div class="service-actions">
-            <button class="add" onclick="addItem('Shoe Cleaning',250)">+</button>
-            <button class="remove" onclick="removeItem(250)">−</button>
-          </div>
-        </div>
-      </div>
+  <div class="service-card">
+    <h4>Blanket Cleaning</h4>
+    <p>Deep clean</p>
+    <span>₹300</span>
+    <div class="service-actions">
+      <button class="add" onclick="toggleItem(this,'Blanket Cleaning',300)">Add</button>
+    </div>
+  </div>
+
+  <div class="service-card">
+    <h4>Shoe Cleaning</h4>
+    <p>Inside & outside</p>
+    <span>₹250</span>
+    <div class="service-actions">
+      <button class="add" onclick="toggleItem(this,'Shoe Cleaning',250)">Add</button>
+    </div>
+  </div>
+
+</div>
+
     </div>
 
     <!-- CART -->
@@ -488,26 +485,40 @@ let total = 0;
 
 function scrollToBooking(){
   document.getElementById("booking-section")
-  .scrollIntoView({behavior:"smooth"});
+    .scrollIntoView({ behavior:"smooth" });
 }
 
-function addItem(name, price){
-  const li = document.createElement("li");
-  li.textContent = `${name} - ₹${price}`;
-  document.getElementById("cartItems").appendChild(li);
-  total += price;
+/* ================= TOGGLE SERVICE ================= */
+function toggleItem(btn, name, price){
+  const cart = document.getElementById("cartItems");
+
+  if(btn.innerText === "Add"){
+    const li = document.createElement("li");
+    li.setAttribute("data-item", name);
+    li.textContent = `${name} - ₹${price}`;
+    cart.appendChild(li);
+
+    total += price;
+    btn.innerText = "Remove";
+    btn.classList.remove("add");
+    btn.classList.add("remove");
+  }
+  else{
+    const item = cart.querySelector(`li[data-item="${name}"]`);
+    if(item){
+      cart.removeChild(item);
+      total -= price;
+    }
+
+    btn.innerText = "Add";
+    btn.classList.remove("remove");
+    btn.classList.add("add");
+  }
+
   document.getElementById("total").innerText = total;
 }
 
-function removeItem(price){
-  const list = document.getElementById("cartItems");
-  if(list.children.length === 0) return;
-  list.removeChild(list.lastChild);
-  total -= price;
-  if(total < 0) total = 0;
-  document.getElementById("total").innerText = total;
-}
-
+/* ================= SEND EMAIL ================= */
 function sendEmail(){
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
@@ -528,13 +539,31 @@ function sendEmail(){
       total: "₹" + total
     }
   ).then(()=>{
-    document.getElementById("success").style.display="block";
-    document.getElementById("cartItems").innerHTML="";
-    document.getElementById("total").innerText="0";
-    total=0;
+
+    // SUCCESS MESSAGE
+    document.getElementById("success").style.display = "block";
+
+    // RESET CART
+    document.getElementById("cartItems").innerHTML = "";
+    document.getElementById("total").innerText = "0";
+    total = 0;
+
+    // RESET FORM FIELDS
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("phone").value = "";
+
+    // ✅ RESET ALL SERVICE BUTTONS TO "ADD"
+    document.querySelectorAll(".service-card button").forEach(btn=>{
+      btn.innerText = "Add";
+      btn.classList.remove("remove");
+      btn.classList.add("add");
+    });
+
   });
 }
 </script>
+
 
 </body>
 </html>
