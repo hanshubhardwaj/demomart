@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Laundry Services By Bhardwaj</title>
+<title>Laundry Services By Hanshu Bhardwaj</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- EmailJS -->
@@ -13,296 +13,7 @@
 })();
 </script>
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, sans-serif;
-}
-body{
-  background:#f4f8fc;
-}
-
-/* ================= NAVBAR ================= */
-nav{
-  background:#fff;
-  padding:15px 60px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-nav ul{
-  list-style:none;
-  display:flex;
-  gap:30px;
-}
-nav a{
-  text-decoration:none;
-  color:#333;
-  font-weight:500;
-}
-.logo{
-  font-size:22px;
-  font-weight:bold;
-  color:#1e90ff;
-}
-
-/* ================= HERO ================= */
-.hero{
-  min-height:90vh;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:60px;
-  background:#fff;
-}
-.hero-text{
-  max-width:50%;
-}
-.hero-text h1{
-  font-size:42px;
-}
-.hero-text p{
-  margin:15px 0;
-  color:#666;
-}
-.hero-text button{
-  padding:14px 26px;
-  background:#1e90ff;
-  border:none;
-  color:#fff;
-  border-radius:8px;
-  cursor:pointer;
-}
-.hero img{
-  width:350px;
-}
-
-/* ================= ACHIEVEMENTS ================= */
-.achievements{
-  background:#1e90ff;
-  color:#fff;
-  padding:40px;
-  display:flex;
-  justify-content:space-around;
-  text-align:center;
-}
-.achievements h2{
-  font-size:28px;
-}
-
-/* ================= BOOKING ================= */
-.booking{
-  padding:60px;
-}
-.booking-container{
-  background:#fff;
-  padding:30px;
-  border-radius:12px;
-  display:grid;
-  grid-template-columns:1.5fr 1fr;
-  gap:30px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
-}
-
-/* ================= SERVICES ================= */
-.services-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-  margin-top:20px;
-}
-.service-card{
-  background:#f9fbff;
-  padding:18px;
-  border-radius:12px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.06);
-  transition:0.3s;
-}
-.service-card:hover{
-  transform:translateY(-5px);
-}
-.service-card h4{
-  margin-bottom:5px;
-}
-.service-card p{
-  font-size:13px;
-  color:#666;
-}
-.service-card span{
-  font-weight:bold;
-  color:#1e90ff;
-  display:block;
-  margin-top:8px;
-}
-.service-actions{
-  display:flex;
-  gap:10px;
-  margin-top:12px;
-}
-.service-actions button{
-  flex:1;
-  padding:8px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  font-size:18px;
-}
-.add{ background:#1e90ff; color:#fff; }
-.remove{ background:#ff4d4d; color:#fff; }
-
-/* ================= CART ================= */
-.cart{
-  background:#f9fbff;
-  padding:20px;
-  border-radius:10px;
-}
-.cart ul{
-  list-style:none;
-  margin-bottom:10px;
-}
-.cart li{
-  margin-bottom:5px;
-}
-.total{
-  font-weight:bold;
-  margin-bottom:10px;
-}
-.cart input{
-  width:100%;
-  padding:10px;
-  margin-bottom:10px;
-}
-.cart button{
-  width:100%;
-  padding:12px;
-  background:#1e90ff;
-  border:none;
-  color:#fff;
-  border-radius:8px;
-}
-#success{
-  color:green;
-  margin-top:10px;
-  display:none;
-}
-
-/* ================= NEWSLETTER ================= */
-.newsletter{
-  background:#42a5f5;
-  padding:40px 20px;
-}
-
-.newsletter-container{
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:20px;
-}
-
-.newsletter h2{
-  color:#fff;
-  font-size:22px;
-}
-
-.newsletter-form{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-.newsletter-form input{
-  padding:12px;
-  border:none;
-  border-radius:6px;
-  width:180px;
-}
-
-.newsletter-form button{
-  padding:12px 24px;
-  border:none;
-  border-radius:6px;
-  background:#fff;
-  color:#42a5f5;
-  font-weight:600;
-  cursor:pointer;
-}
-
-/* ================= FOOTER ================= */
-.footer{
-  background:#ffffff;
-  padding:60px 20px 20px;
-}
-
-.footer-container{
-  max-width:1100px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:30px;
-}
-
-.footer-box h3,
-.footer-box h4{
-  margin-bottom:10px;
-}
-
-.footer-box p,
-.footer-box li{
-  font-size:14px;
-  color:#666;
-  list-style:none;
-  margin-bottom:6px;
-}
-
-.footer-box ul{
-  padding:0;
-}
-
-.footer-box a{
-  text-decoration:none;
-  color:#666;
-}
-
-.footer-box a:hover{
-  color:#1e90ff;
-}
-
-.social-icons span{
-  font-size:20px;
-  margin-right:10px;
-  cursor:pointer;
-}
-
-.footer-bottom{
-  text-align:center;
-  margin-top:30px;
-  padding-top:15px;
-  border-top:1px solid #eee;
-  font-size:14px;
-  color:#777;
-}
-
-
-/* ================= RESPONSIVE ================= */
-@media(max-width:768px){
-  .hero{
-    flex-direction:column;
-    text-align:center;
-  }
-  .hero-text{
-    max-width:100%;
-  }
-  .booking-container{
-    grid-template-columns:1fr;
-  }
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -311,20 +22,22 @@ nav a{
 <nav>
   <div class="logo">Laundry</div>
   <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Services</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="#booking-section">Services</a></li>
     <li><a href="#">About</a></li>
     <li><a href="#">Contact</a></li>
   </ul>
   <div>User</div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO SECTION -->
 <section class="hero">
   <div class="hero-text">
-    <h1>Revitalize Your Clothes with Expert Laundry Services</h1>
+    <h1>Revitalize Your</h1>
+    <h2>Clothes with Expert</h2>
+    <h3>Laundry Services!</h3>
     <p>Fast, affordable & professional laundry solutions.</p>
-    <button onclick="scrollToBooking()">Book a Service</button>
+    <button onclick="scrollToBooking()">Book a Service Today!</button>
   </div>
   <img src="https://media3.bsh-group.com/Product_Shots/5120x/21433238_WG34A20PIN_PGA4_def.webp">
 </section>
@@ -336,90 +49,94 @@ nav a{
   <div><h2>2+</h2><p>Years Experience</p></div>
 </section>
 
-<!-- BOOKING -->
+<!-- BOOKING SECTION -->
 <section id="booking-section" class="booking">
-  <div class="booking-container">
+  <div class="booking-wrapper">
 
-    <!-- SERVICES -->
-    <div>
+    <!-- LEFT : SERVICES -->
+    <div class="services-box">
       <h3>Our Services</h3>
+      <p class="subtitle">Click on add to cart to select services</p>
 
-      <div class="services-grid">
+      <div class="service-row">
+        <span>🧥 Dry Cleaning</span>
+        <span>₹200</span>
+        <button onclick="toggleItem(this,'Dry Cleaning',200)">Add Item</button>
+      </div>
 
-  <div class="service-card">
-    <h4>Dry Cleaning</h4>
-    <p>Premium fabric care</p>
-    <span>₹200</span>
-    <div class="service-actions">
-      <button class="add" onclick="toggleItem(this,'Dry Cleaning',200)">Add</button>
-    </div>
-  </div>
+      <div class="service-row">
+        <span>🧺 Wash & Fold</span>
+        <span>₹100</span>
+        <button onclick="toggleItem(this,'Wash & Fold',100)">Add Item</button>
+      </div>
 
-  <div class="service-card">
-    <h4>Washing</h4>
-    <p>Machine wash</p>
-    <span>₹100</span>
-    <div class="service-actions">
-      <button class="add" onclick="toggleItem(this,'Washing',100)">Add</button>
-    </div>
-  </div>
+      <div class="service-row">
+        <span>👔 Ironing</span>
+        <span>₹100</span>
+        <button onclick="toggleItem(this,'Ironing',100)">Add Item</button>
+      </div>
 
-  <div class="service-card">
-    <h4>Ironing</h4>
-    <p>Steam press</p>
-    <span>₹50</span>
-    <div class="service-actions">
-      <button class="add" onclick="toggleItem(this,'Ironing',50)">Add</button>
-    </div>
-  </div>
+      <div class="service-row">
+        <span>🧼 Stain Removal</span>
+        <span>₹500</span>
+        <button onclick="toggleItem(this,'Stain Removal',500)">Add Item</button>
+      </div>
 
-  <div class="service-card">
-    <h4>Wash & Iron</h4>
-    <p>Complete combo</p>
-    <span>₹140</span>
-    <div class="service-actions">
-      <button class="add" onclick="toggleItem(this,'Wash & Iron',140)">Add</button>
-    </div>
-  </div>
-
-  <div class="service-card">
-    <h4>Blanket Cleaning</h4>
-    <p>Deep clean</p>
-    <span>₹300</span>
-    <div class="service-actions">
-      <button class="add" onclick="toggleItem(this,'Blanket Cleaning',300)">Add</button>
-    </div>
-  </div>
-
-  <div class="service-card">
-    <h4>Shoe Cleaning</h4>
-    <p>Inside & outside</p>
-    <span>₹250</span>
-    <div class="service-actions">
-      <button class="add" onclick="toggleItem(this,'Shoe Cleaning',250)">Add</button>
-    </div>
-  </div>
-
+      <div class="service-row">
+        <span>🧥 Leather & Suede</span>
+        <span>₹999</span>
+        <button onclick="toggleItem(this,'Leather Cleaning',999)">Add Item</button>
+      </div>
+      <div class="service-row">
+        <span>🧥 Weather Dress Cleaning</span>
+        <span>₹2800</span>
+        <button onclick="toggleItem(this,'Weather Dress Cleaning',2800)">Add Item</button>
+      </div>
+      <div class="service-note">
+      <span class="info-icon">ℹ️</span>
+      <span>Add the items to the cart and book now</span>
 </div>
 
     </div>
 
-    <!-- CART -->
-    <div class="cart">
-      <h3>Your Cart</h3>
-      <ul id="cartItems"></ul>
-      <div class="total">Total: ₹<span id="total">0</span></div>
+   <!-- RIGHT SIDE -->
+    <div class="right-box">
 
-      <input type="text" id="name" placeholder="Full Name">
-      <input type="email" id="email" placeholder="Email">
-      <input type="tel" id="phone" placeholder="Phone Number">
-      <button onclick="sendEmail()">Book Now</button>
+  <!-- CART SECTION -->
+  <div class="cart-box">
+    <h3>Added Items</h3>
 
-      <div id="success">Booking sent successfully!</div>
+    <table>
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Service</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody id="cartItems"></tbody>
+    </table>
+
+    <div class="total-box">
+      <span>Total Amount</span>
+      <span>₹<span id="total">0</span></span>
     </div>
+  </div>
 
+  <!-- BOOK NOW SECTION -->
+  <div class="book-box">
+    <h3>Book Now</h3>
+
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="email" id="email" placeholder="Email ID">
+    <input type="tel" id="phone" placeholder="Phone Number">
+
+    <button class="book-btn" onclick="sendEmail()">Book Now</button>
+  </div>
+  </div>
   </div>
 </section>
+
 
 <!-- NEWSLETTER -->
 <section class="newsletter">
@@ -478,92 +195,6 @@ nav a{
     © 2025 Laundry Services by Hanshu Bhardwaj
   </div>
 </footer>
-
-
-<script>
-let total = 0;
-
-function scrollToBooking(){
-  document.getElementById("booking-section")
-    .scrollIntoView({ behavior:"smooth" });
-}
-
-/* ================= TOGGLE SERVICE ================= */
-function toggleItem(btn, name, price){
-  const cart = document.getElementById("cartItems");
-
-  if(btn.innerText === "Add"){
-    const li = document.createElement("li");
-    li.setAttribute("data-item", name);
-    li.textContent = `${name} - ₹${price}`;
-    cart.appendChild(li);
-
-    total += price;
-    btn.innerText = "Remove";
-    btn.classList.remove("add");
-    btn.classList.add("remove");
-  }
-  else{
-    const item = cart.querySelector(`li[data-item="${name}"]`);
-    if(item){
-      cart.removeChild(item);
-      total -= price;
-    }
-
-    btn.innerText = "Add";
-    btn.classList.remove("remove");
-    btn.classList.add("add");
-  }
-
-  document.getElementById("total").innerText = total;
-}
-
-/* ================= SEND EMAIL ================= */
-function sendEmail(){
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const phone = document.getElementById("phone").value;
-
-  if(!name || !email || !phone || total === 0){
-    alert("Please fill details and add services");
-    return;
-  }
-
-  emailjs.send(
-    "service_25k3exr",
-    "template_a7vitxg",
-    {
-      name,
-      email,
-      phone,
-      total: "₹" + total
-    }
-  ).then(()=>{
-
-    // SUCCESS MESSAGE
-    document.getElementById("success").style.display = "block";
-
-    // RESET CART
-    document.getElementById("cartItems").innerHTML = "";
-    document.getElementById("total").innerText = "0";
-    total = 0;
-
-    // RESET FORM FIELDS
-    document.getElementById("name").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("phone").value = "";
-
-    // ✅ RESET ALL SERVICE BUTTONS TO "ADD"
-    document.querySelectorAll(".service-card button").forEach(btn=>{
-      btn.innerText = "Add";
-      btn.classList.remove("remove");
-      btn.classList.add("add");
-    });
-
-  });
-}
-</script>
-
-
+<script src="script.js"></script>
 </body>
 </html>
