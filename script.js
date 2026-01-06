@@ -1,10 +1,30 @@
 let total = 0;
 
+/* ================= TOAST MESSAGE ================= */
+function showToast(message, type = "add"){
+  const toast = document.getElementById("toast");
+  if(!toast) return;
+
+  toast.innerText = message;
+  toast.className = "";
+  toast.classList.add("show");
+
+  if(type === "remove"){
+    toast.classList.add("remove");
+  }
+
+  setTimeout(() => {
+    toast.classList.remove("show","remove");
+  }, 2000);
+}
+
+/* ================= SCROLL ================= */
 function scrollToBooking(){
   document.getElementById("booking-section")
     .scrollIntoView({ behavior:"smooth" });
 }
 
+/* ================= EMPTY CART MESSAGE ================= */
 function toggleEmptyMessage(){
   const cart = document.getElementById("cartItems");
   const emptyRow = document.getElementById("emptyRow");
@@ -16,6 +36,7 @@ function toggleEmptyMessage(){
   }
 }
 
+/* ================= ADD / REMOVE ITEM ================= */
 function toggleItem(btn, name, price){
   const cart = document.getElementById("cartItems");
   const existingRow = cart.querySelector(`tr[data-item="${name}"]`);
@@ -33,6 +54,8 @@ function toggleItem(btn, name, price){
     total += price;
     btn.innerText = "Remove";
     btn.classList.add("remove");
+
+    showToast(`${name} added to cart`);
   } else {
     cart.removeChild(existingRow);
 
@@ -41,6 +64,8 @@ function toggleItem(btn, name, price){
 
     btn.innerText = "Add Item";
     btn.classList.remove("remove");
+
+    showToast(`${name} removed from cart`, "remove");
   }
 
   updateSerialNumbers();
@@ -48,6 +73,7 @@ function toggleItem(btn, name, price){
   document.getElementById("total").innerText = total;
 }
 
+/* ================= SERIAL NUMBER ================= */
 function updateSerialNumbers(){
   const rows = document.querySelectorAll("#cartItems tr[data-item]");
   rows.forEach((row, index) => {
@@ -55,6 +81,7 @@ function updateSerialNumbers(){
   });
 }
 
+/* ================= SEND EMAIL ================= */
 function sendEmail(){
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
@@ -76,7 +103,7 @@ function sendEmail(){
     }
   ).then(() => {
 
-    alert("Booking successful!");
+    showToast("Booking successful!");
 
     /* RESET CART */
     document.getElementById("cartItems").innerHTML = `
@@ -104,4 +131,5 @@ function sendEmail(){
   });
 }
 
+/* ================= INIT ================= */
 document.addEventListener("DOMContentLoaded", toggleEmptyMessage);
