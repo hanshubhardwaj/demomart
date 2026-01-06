@@ -5,10 +5,21 @@ function scrollToBooking(){
     .scrollIntoView({ behavior:"smooth" });
 }
 
+function toggleEmptyMessage(){
+  const cart = document.getElementById("cartItems");
+  const emptyRow = document.getElementById("emptyRow");
+
+  if(cart.querySelectorAll("tr[data-item]").length === 0){
+    emptyRow.style.display = "";
+  } else {
+    emptyRow.style.display = "none";
+  }
+}
+
 function toggleItem(btn, name, price){
   const cart = document.getElementById("cartItems");
-
   const existingRow = cart.querySelector(`tr[data-item="${name}"]`);
+
   if(!existingRow){
     const tr = document.createElement("tr");
     tr.setAttribute("data-item", name);
@@ -22,24 +33,28 @@ function toggleItem(btn, name, price){
     total += price;
     btn.innerText = "Remove";
     btn.classList.add("remove");
-  }
-  else{
+  } else {
     cart.removeChild(existingRow);
+
     total -= price;
+    if(total < 0) total = 0;
 
     btn.innerText = "Add Item";
     btn.classList.remove("remove");
   }
 
   updateSerialNumbers();
+  toggleEmptyMessage();
   document.getElementById("total").innerText = total;
 }
+
 function updateSerialNumbers(){
-  const rows = document.querySelectorAll("#cartItems tr");
+  const rows = document.querySelectorAll("#cartItems tr[data-item]");
   rows.forEach((row, index) => {
     row.children[0].innerText = index + 1;
   });
 }
+
 function sendEmail(){
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
@@ -49,6 +64,7 @@ function sendEmail(){
     alert("Please fill details and add services");
     return;
   }
+
   emailjs.send(
     "service_25k3exr",
     "template_a7vitxg",
@@ -58,21 +74,34 @@ function sendEmail(){
       phone,
       total: "₹" + total
     }
-  ).then(()=>{
+  ).then(() => {
 
     alert("Booking successful!");
 
-    document.getElementById("cartItems").innerHTML = "";
-    document.getElementById("total").innerText = "0";
+    /* RESET CART */
+    document.getElementById("cartItems").innerHTML = `
+      <tr id="emptyRow">
+        <td colspan="3" style="text-align:center; color:#888;">
+          No item added
+        </td>
+      </tr>
+    `;
     total = 0;
+    document.getElementById("total").innerText = "0";
 
+    /* RESET FORM */
     document.getElementById("name").value = "";
     document.getElementById("email").value = "";
     document.getElementById("phone").value = "";
 
-    document.querySelectorAll(".services-box button").forEach(btn=>{
+    /* RESET BUTTONS */
+    document.querySelectorAll(".services-box button").forEach(btn => {
       btn.innerText = "Add Item";
       btn.classList.remove("remove");
     });
+
+    toggleEmptyMessage();
   });
 }
+
+document.addEventListener("DOMContentLoaded", toggleEmptyMessage);
