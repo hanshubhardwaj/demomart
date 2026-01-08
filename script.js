@@ -1,14 +1,5 @@
 let total = 0;
 
-function showPopup(msg){
-  document.getElementById("popupText").innerText = msg;
-  document.getElementById("popup").style.display = "flex";
-}
-
-function closePopup(){
-  document.getElementById("popup").style.display = "none";
-}
-
 function scrollToBooking(){
   document.getElementById("booking-section")
     .scrollIntoView({ behavior:"smooth" });
@@ -24,6 +15,7 @@ function toggleEmptyMessage(){
     emptyRow.style.display = "none";
   }
 }
+
 
 function toggleItem(btn, name, price){
   const cart = document.getElementById("cartItems");
@@ -43,7 +35,7 @@ function toggleItem(btn, name, price){
     btn.innerText = "Remove";
     btn.classList.add("remove");
 
-    showPopup(`${name} added to cart`);
+    alert(`${name} added to cart`);
   } else {
     cart.removeChild(existingRow);
 
@@ -53,13 +45,14 @@ function toggleItem(btn, name, price){
     btn.innerText = "Add Item";
     btn.classList.remove("remove");
 
-    showPopup(`${name} removed from cart`);
+    alert(`${name} removed from cart`);
   }
 
   updateSerialNumbers();
   toggleEmptyMessage();
   document.getElementById("total").innerText = total;
 }
+
 
 function updateSerialNumbers(){
   const rows = document.querySelectorAll("#cartItems tr[data-item]");
@@ -68,23 +61,29 @@ function updateSerialNumbers(){
   });
 }
 
+
 function sendEmail(){
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
   const phone = document.getElementById("phone").value.trim();
 
   if(!name || !email || !phone || total === 0){
-    showPopup("Please fill details and add services");
+    alert("Please fill details and add services");
     return;
   }
 
   emailjs.send(
     "service_25k3exr",
     "template_a7vitxg",
-    { name, email, phone, total: "₹" + total }
+    {
+      name,
+      email,
+      phone,
+      total: "₹" + total
+    }
   ).then(() => {
 
-    showPopup("Booking successful!");
+    alert("Booking successful!");
 
     document.getElementById("cartItems").innerHTML = `
       <tr id="emptyRow">
@@ -101,7 +100,7 @@ function sendEmail(){
     document.getElementById("email").value = "";
     document.getElementById("phone").value = "";
 
-    document.querySelectorAll(".services-box button").forEach(btn=>{
+    document.querySelectorAll(".services-box button").forEach(btn => {
       btn.innerText = "Add Item";
       btn.classList.remove("remove");
     });
@@ -109,5 +108,4 @@ function sendEmail(){
     toggleEmptyMessage();
   });
 }
-
 document.addEventListener("DOMContentLoaded", toggleEmptyMessage);
