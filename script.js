@@ -1,21 +1,12 @@
 let total = 0;
 
-/* ================= TOAST MESSAGE ================= */
-function showToast(message, type = "add"){
-  const toast = document.getElementById("toast");
-  if(!toast) return;
+function showPopup(msg){
+  document.getElementById("popupText").innerText = msg;
+  document.getElementById("popup").style.display = "flex";
+}
 
-  toast.innerText = message;
-  toast.className = "";
-  toast.classList.add("show");
-
-  if(type === "remove"){
-    toast.classList.add("remove");
-  }
-
-  setTimeout(() => {
-    toast.classList.remove("show","remove");
-  }, 2000);
+function closePopup(){
+  document.getElementById("popup").style.display = "none";
 }
 
 /* ================= SCROLL ================= */
