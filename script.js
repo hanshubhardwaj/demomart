@@ -1,6 +1,5 @@
 let total = 0;
 
-/* ================= POPUP ================= */
 function showPopup(msg){
   document.getElementById("popupText").innerText = msg;
   document.getElementById("popup").style.display = "flex";
@@ -10,13 +9,11 @@ function closePopup(){
   document.getElementById("popup").style.display = "none";
 }
 
-/* ================= SCROLL ================= */
 function scrollToBooking(){
   document.getElementById("booking-section")
     .scrollIntoView({ behavior:"smooth" });
 }
 
-/* ================= EMPTY CART MESSAGE ================= */
 function toggleEmptyMessage(){
   const cart = document.getElementById("cartItems");
   const emptyRow = document.getElementById("emptyRow");
@@ -28,7 +25,6 @@ function toggleEmptyMessage(){
   }
 }
 
-/* ================= ADD / REMOVE ITEM ================= */
 function toggleItem(btn, name, price){
   const cart = document.getElementById("cartItems");
   const existingRow = cart.querySelector(`tr[data-item="${name}"]`);
@@ -65,7 +61,6 @@ function toggleItem(btn, name, price){
   document.getElementById("total").innerText = total;
 }
 
-/* ================= SERIAL NUMBER ================= */
 function updateSerialNumbers(){
   const rows = document.querySelectorAll("#cartItems tr[data-item]");
   rows.forEach((row, index) => {
@@ -73,7 +68,6 @@ function updateSerialNumbers(){
   });
 }
 
-/* ================= SEND EMAIL ================= */
 function sendEmail(){
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
@@ -116,5 +110,4 @@ function sendEmail(){
   });
 }
 
-/* ================= INIT ================= */
 document.addEventListener("DOMContentLoaded", toggleEmptyMessage);
