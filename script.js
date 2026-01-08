@@ -1,5 +1,6 @@
 let total = 0;
 
+/* ================= POPUP ================= */
 function showPopup(msg){
   document.getElementById("popupText").innerText = msg;
   document.getElementById("popup").style.display = "flex";
@@ -46,7 +47,7 @@ function toggleItem(btn, name, price){
     btn.innerText = "Remove";
     btn.classList.add("remove");
 
-    showToast(`${name} added to cart`);
+    showPopup(`${name} added to cart`);
   } else {
     cart.removeChild(existingRow);
 
@@ -56,7 +57,7 @@ function toggleItem(btn, name, price){
     btn.innerText = "Add Item";
     btn.classList.remove("remove");
 
-    showToast(`${name} removed from cart`, "remove");
+    showPopup(`${name} removed from cart`);
   }
 
   updateSerialNumbers();
@@ -79,24 +80,18 @@ function sendEmail(){
   const phone = document.getElementById("phone").value.trim();
 
   if(!name || !email || !phone || total === 0){
-    alert("Please fill details and add services");
+    showPopup("Please fill details and add services");
     return;
   }
 
   emailjs.send(
     "service_25k3exr",
     "template_a7vitxg",
-    {
-      name,
-      email,
-      phone,
-      total: "₹" + total
-    }
+    { name, email, phone, total: "₹" + total }
   ).then(() => {
 
-    showToast("Booking successful!");
+    showPopup("Booking successful!");
 
-    /* RESET CART */
     document.getElementById("cartItems").innerHTML = `
       <tr id="emptyRow">
         <td colspan="3" style="text-align:center; color:#888;">
@@ -104,16 +99,15 @@ function sendEmail(){
         </td>
       </tr>
     `;
+
     total = 0;
     document.getElementById("total").innerText = "0";
 
-    /* RESET FORM */
     document.getElementById("name").value = "";
     document.getElementById("email").value = "";
     document.getElementById("phone").value = "";
 
-    /* RESET BUTTONS */
-    document.querySelectorAll(".services-box button").forEach(btn => {
+    document.querySelectorAll(".services-box button").forEach(btn=>{
       btn.innerText = "Add Item";
       btn.classList.remove("remove");
     });
