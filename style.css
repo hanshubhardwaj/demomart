@@ -347,31 +347,32 @@ nav a{
   color:#777;
 }
 
-#toast{
+.popup{
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-box{
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+}
+
+.popup-box button{
   background: #1e90ff;
   color: #fff;
-  padding: 14px 20px;
+  border: none;
+  padding: 8px 20px;
   border-radius: 6px;
-  font-size: 14px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(20px);
-  transition: all 0.3s ease;
-  z-index: 9999;
+  cursor: pointer;
 }
 
-#toast.show{
-  opacity: 1;
-  transform: translateY(0);
-}
-
-#toast.remove{
-  background: #ff4d4f;
-}
 
 
 @media(max-width:768px){
